@@ -27,8 +27,8 @@ GTS Engine目前支持两种使用方式：
 | ------- | ------- | --------------------- | ----------- | ----------- | ----------------------------------------------------------------------------- | --------- | ----------------------------- | --------------------- | ------------- | ----------------- | --------- |
 | A100  | 40GB  | False               | AdamW     | 32        | batch_size=2, max_len=768, accumulate_batch = 16，val_check_internal = 0.25 | csldcp  | 48, 2 ,12                   | 837                 | 5           | 61.74           | 64.76   |
 | <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 48, 3, 6                    | 1450                | 6           | 52.37           | 54.15   |
-| V100  | 32GB  | True                | AdamW     | 32        | batch_size=4, max_len=768, accumulate_batch = 8，val_check_internal = 0.25  | csldcp  | (42, 2, 12) * 3             | 837                 | 6           | 61.74           | 64.59   |
-| <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | (46, 3, 6) *3               | 1450                | 6           | 52.94           | 54.03   |
+| V100  | 32GB  | True                | AdamW     | 32        | batch_size=4, max_len=768, accumulate_batch = 8，val_check_internal = 0.25  | csldcp  | 126, 6, 36             | 837                 | 6           | 61.74           | 64.59   |
+| <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 138, 9, 18               | 1450                | 6           | 52.94           | 54.03   |
 | 3090  | 24GB  | True                | Adafactor | 32        | batch_size=4, max_len=768, accumulate_batch = 8，val_check_internal = 0.25  | csldcp  | 346, 6, 29                  | 837                 | 24          | 61.06           | 64.87   |
 | <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 195, 7 ,15                  | 1450                | 11          | 51.06           | 53.52   |
 | <br/> | <br/> | <br/>               | <br/>     | 16        | <br/>                                                                       | csldcp  | 182, 6, 29                  | 837                 | 17          | 59.50           | 64.20   |
@@ -55,4 +55,5 @@ loralib
 decorator
 rich
 web.py
+pynvml
 ```
