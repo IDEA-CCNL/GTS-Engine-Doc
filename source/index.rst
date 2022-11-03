@@ -15,6 +15,7 @@ GTS-Engine使用文档
    docs/requirement
    docs/preprocess
    docs/interface_detail
+   docs/customize
    docs/question
 
 Indices and tables
