@@ -1,6 +1,6 @@
 # 接口详情
 
-GTS Engine的所有接口都是HTTP POST请求，本节列出了GTS Engine各个任务的详细接口：
+GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python SDK版本，本节列出了GTS Engine各个任务的详细接口：
 
 ## 文本分类任务
 
@@ -130,12 +130,14 @@ GTS Engine的所有接口都是HTTP POST请求，本节列出了GTS Engine各个
 | ---- | ---- | ---- |
 | `ret_code` | int | 返回码： <br> - 200：推理模型启动成功 <br> - -100：推理模型启动失败 |
 #### 推理
+
 * 输入参数
 
 | 参数名 | 参数类型 | 释义 |
 | ---- | ---- | ---- |
 | `taskid` | str | 任务id |
 | `samples` | list | list中每个元素是待预测样本 |
+
 * 输出参数
 
 函数的返回值是一个字典，字典中包含如下字段：
@@ -146,6 +148,7 @@ GTS Engine的所有接口都是HTTP POST请求，本节列出了GTS Engine各个
 | `predictions` | list | 推理结果的标签列表 |
 | `probabilities` | list | 推理结果的概率分布 |
 #### 终止推理
+
 * 输入参数
 
 | 参数名 | 参数类型 | 释义 |
