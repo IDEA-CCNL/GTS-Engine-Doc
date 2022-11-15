@@ -20,40 +20,36 @@ GTS Engine目前支持两种使用方式：
 
 ## 不同环境下的测试效果
 
-以fewclue榜单上的csldcp和iflytek任务为例进行测试：
+以fewCLUE榜单上的csldcp和iflytek任务为例进行测试：
 
 
-| 显卡  | 显存  | gradient checkpoint | Optimizer | precision | 超参                                                                        | 任务    | 耗费时间(min)train/eval/knn | total training step | final epoch | test public acc | knn acc |
-| ------- | ------- | --------------------- | ----------- | ----------- | ----------------------------------------------------------------------------- | --------- | ----------------------------- | --------------------- | ------------- | ----------------- | --------- |
-| A100  | 40GB  | False               | AdamW     | 32        | batch_size=2, max_len=768, accumulate_batch = 16，val_check_internal = 0.25 | csldcp  | 48, 2 ,12                   | 837                 | 5           | 61.74           | 64.76   |
-| <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 48, 3, 6                    | 1450                | 6           | 52.37           | 54.15   |
-| V100  | 32GB  | True                | AdamW     | 32        | batch_size=4, max_len=768, accumulate_batch = 8，val_check_internal = 0.25  | csldcp  | 126, 6, 36             | 837                 | 6           | 61.74           | 64.59   |
-| <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 138, 9, 18               | 1450                | 6           | 52.94           | 54.03   |
-| 3090  | 24GB  | True                | Adafactor | 32        | batch_size=4, max_len=768, accumulate_batch = 8，val_check_internal = 0.25  | csldcp  | 346, 6, 29                  | 837                 | 24          | 61.06           | 64.87   |
-| <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 195, 7 ,15                  | 1450                | 11          | 51.06           | 53.52   |
-| <br/> | <br/> | <br/>               | <br/>     | 16        | <br/>                                                                       | csldcp  | 182, 6, 29                  | 837                 | 17          | 59.50           | 64.20   |
-| <br/> | <br/> | <br/>               | <br/>     | <br/>     | <br/>                                                                       | iflytek | 209, 7, 15                  | 1450                | 16          | 51.74           | 53.63   |
-
-注：
+| 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参 | 任务 | 耗费时间(min) | total training step | final epoch | test acc |
+| ---- | --- | ------------------- | --------- | --------- | ---- | --- | ------------- | ------------------- | ----------- | -------- |
+| A100 | 40GB | False | AdamW | 32 | batch_size=2, max_len=768, accumulate_batch = 16, val_check_internal = 0.25 | csldcp  | 62 | 837 | 5 | 64.76 |
+| A100 | 40GB | False | AdamW | 32 | batch_size=2, max_len=768, accumulate_batch = 16, val_check_internal = 0.25 | iflytek | 57 | 1450 | 6 | 54.15 |
+| V100 | 32GB | True | AdamW | 32 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | csldcp | 168 | 837 | 6 | 64.59 |
+| V100 | 32GB | True | AdamW | 32 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 165 | 1450 | 6 | 54.03 |
+| 3090 | 24GB | True | Adafactor | 32 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | csldcp  | 381 | 837 | 24 | 64.87 |
+| 3090 | 24GB | True | Adafactor | 32 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 217 | 1450 | 11 | 53.52 |
+| 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | csldcp  | 217 | 837 | 17 | 64.20 |
+| 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 231 | 1450 | 16 | 53.63 |
 
 ## 软件环境要求
 
-建议您使用我们打包好的Docker镜像，如果您需要直接使用源码，请使用python=3.8并且需要满足下列的软件安装依赖：
+建议您使用我们打包好的Docker镜像，如果您需要直接使用源码，请使用`python>=3.7+`并且需要满足下列的软件安装依赖：
 
 ```python
-numpy
-pandas
-sklearn
-scipy
-matplotlib
-torch>=1.10.0
-pytorch-lightning==1.5.10
-protobuf==3.6.0
+fastapi==0.86.0
+numpy==1.22.3
+psutil==5.8.0
+pydantic==1.10.2
+pynvml==11.0.0
+pytorch_lightning==1.6.2
+scikit_learn==1.1.3
+setuptools==58.0.4
+starlette==0.20.4
+torch==1.11.0+cu113
+tqdm==4.62.3
 transformers==4.18.0
-roformer>=0.4.0
-loralib
-decorator
-rich
-web.py
-pynvml
+uvicorn==0.19.0
 ```
