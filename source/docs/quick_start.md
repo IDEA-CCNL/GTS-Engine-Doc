@@ -2,20 +2,65 @@
 ## 服务启动
 
 下面通过一个简单的例子，来让您快速上手GTS Engine的使用。
-首先提供以下两种启动服务的方法：
+首先提供以下三种启动服务的方法：
+- [pip启动](#pip启动)
 - [源码启动](#源码启动)
 - [Docker启动](#Docker启动)
+
+
+### pip启动
+```bash
+#为了避免与原来环境下载包的版本不同导致冲突，可以新建环境
+conda create -n gts_project python=3.8
+#环境激活
+conda activate gts_project
+#下载gts-engine包
+pip install gts-engine 
+```
+选择适合适配显卡的cuda版本torch安装，torch版本要求1.11.0，[下载地址](https://download.pytorch.org/whl/torch_stable.html)
+
+示例：NVIDIA版本```Driver Version: 450.80.02, CUDA Version: 11.0 ```
+[可直接下载](https://download.pytorch.org/whl/cu113/torch-1.11.0%2Bcu113-cp38-cp38-linux_x86_64.whl)
+```bash
+#下载成功cuda版本torch，安装
+pip install torch-1.11.0+cu113-cp38-cp38-linux_x86_64.whl
+```
+需要新建名为```pretrained```，```tasks``` 的两个文件夹
+建议下载模型：[Erlangshen-UniMC-MegatronBERT-1.3B-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-UniMC-MegatronBERT-1.3B-Chinese)，如果不下载，训练时会自动从```huggingface```下载，由于模型文件较大，可能因为网络原因导致下载失败，从而导致模型训练失败
+```bash
+#将下载好的Erlangshen-UniMC-MegatronBERT-1.3B-Chinese模型文件放在pretrained
+mkdir pretrained  
+mkdir tasks
+```
+```bash
+#为避免文件地址不存在，--task_dir对应的参数写新建的tasks文件夹的绝对路径
+#为避免文件地址不存在，--pretrained_dir对应的参数写新建的pretrained_dir文件夹的绝对路径
+#--port表示服务启动的端口号
+CUDA_VISIBLE_DEVICES=0 gts_engine_service --task_dir tasks \
+--pretrained_dir pretrained --port 5201  #指定GPU 运行api.py
+```
+
+```
+CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py --task_dir tasks --pretrained_dir pretrained --port 5201 
+```
+
 ### 源码启动
-- [GTS-Engine代码下载](https://github.com/IDEA-CCNL/GTS-Engine)
-- [模型下载](https://huggingface.co/IDEA-CCNL)
+[GTS-Engine源码地址](https://github.com/IDEA-CCNL/GTS-Engine)
 
 ```bash
-git clone https://github.com/IDEA-CCNL/GTS-Engine.git #下载源码
+#下载源码
+git clone https://github.com/IDEA-CCNL/GTS-Engine.git 
 cd GTS-Engine
-mkdir pretrained  #将下载好的模型文件放在pretrained
+#下载包
+python setup.py install
+#cuda版本torch安装   具体参考上述pip启动的建议
+pip install torch-1.11.0+cu113-cp38-cp38-linux_x86_64.whl
+#将下载好的Erlangshen-UniMC-MegatronBERT-1.3B-Chinese模型文件放在pretrained  具体参考上述pip启动的建议
+mkdir pretrained
 mkdir tasks
 cd gts_engine
-CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py #指定GPU 运行api.py
+#参数介绍参考上述pip启动的建议
+CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py --task_dir tasks --pretrained_dir pretrained --port 5201  
 ```
 
 如下所示，代码目录gts_engine和预训练模型目录pretrained、任务目录tasks在同一级目录，在pretrained目录中存放预训练模型文件，在tasks中存放任务相关的数据和模型。
@@ -33,21 +78,24 @@ CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py #指定GPU 运行api.py
 您也可以通过命令行脚本进行训练和推理，具体示例请看`examples/text_classification`。
 
 ### Docker启动
+[Docker入门](https://yeasy.gitbook.io/docker_practice)
 ```bash
-#启动docker
-docker run -it --name  gst_engine \
+#docker下载
+sudo docker push gtsfactory/gts-engine:v0
+#docker启动
+#--mount 注：目录挂载source对应的必须是存在的本地绝对路径
+#-p 本地端口与docker端口映射
+sudo docker run -it --name gts_engine \
 -p 5201:5201 \
---mount type=bind,source=/raid/liuyibo/GTS-Engine/files,target=/workspace/gts_teacher_service/files \
-gts_engine_image:v0  
-
-#运行api.py
-CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py
+--mount type=bind,source=/usr/tasks,target=/workspace/GTS-Engine/tasks \
+gtsfactory/gts-engine:v0
+#更新代码
+cd GTS-Engine
+git pull
+cd gts_engine
+#启动服务
+CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py --port 5201
 ```
-
-其中，
-
-- `--mount`：加载主机的`/raid/liuyibo/GTS-Engine/files`目录到容器的`/workspace/gts_teacher_service/files`目录，其中本地目录的路径必须是绝对路径。
-- `-p`：本地端口与docker端口映射。
 
 
 ## API接口使用
