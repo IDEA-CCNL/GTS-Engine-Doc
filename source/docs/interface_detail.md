@@ -9,7 +9,7 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 
 #### 创建任务
 
-`create_task(self, task_name: str, task_type: str)`
+`create_task(self, task_name: str, task_type: str, engine_type: str)`
 
 * 输入参数
 
@@ -17,6 +17,7 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 | ---- | ---- | ---- |
 | `task_name` | str | 任务名称，需要不同于其他已有的任务 |
 | `task_type` | str | 任务类型，目前仅支持以下三种任务：<br> - classification：文本分类 <br> - similarity：句子相似度 <br> - nli：推理任务 |
+| `engine_type` | str | 引擎类型<br> - qiankunding：乾坤鼎  |
 
 * 输出参数
 
@@ -25,7 +26,7 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 | 参数名 | 参数类型 | 释义 |
 | ---- | ---- | ---- |
 | `ret_code` | int | 返回码： <br> - 200：创建成功 <br> - -100：创建失败 |
-| `task_id` | str | 任务对应的id，全局唯一，目前它和task_name相同 |
+| `task_id` | str | 任务对应的id，全局唯一 |
 | `message` | str | 其他返回提示消息 |
 
 #### 列出任务列表
@@ -52,7 +53,7 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 
 | 参数名 | 参数类型 | 释义 |
 | ---- | ---- | ---- |
-| `retcode` | int |<br> - 0：初始化 <br> - 1：训练中<br>- 2：训练成功 <br> - 3：训练失败 <br> - 4：训练停止 <br> - 5：开启预测 <br> - -100：返回失败 <br> - -200：返回失败|
+| `retcode` | int | 返回码： <br>- 0：初始化 <br> - 1：训练中<br>- 2：训练成功 <br> - 3：训练失败 <br> - 4：训练停止 <br> - 5：开启预测 <br> - -100：返回失败 <br> - -200：返回失败|
 | `taskid` | str | 任务id |
 | `message` | str | 其他返回提示消息 |
 
@@ -95,9 +96,12 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 | `val_data` | str | 验证数据的文件名 |
 | `test_data` | str | 测试数据的文件名 |
 | `label_data` | str | 标签数据的文件名 |
+| `unlabeled_data` | str | 无标签数据的文件名|
+| `train_mode` | str | 训练模式，以下两种方式可选：  <br> - standard：标准模式 <br> - advanced：高级模式 |
 | `seed` | int | 随机种子 |
 | `max_num_epoch` | int | 最大训练轮次 |
 | `min_num_epoch` | int | 最小训练轮次 |
+| `gpuid` | int | 指定训练的GPU |
 * 输出参数
 
 函数的返回值是一个字典，字典中包含如下字段：
