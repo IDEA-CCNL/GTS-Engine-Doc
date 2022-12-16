@@ -16,8 +16,8 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 | 参数名 | 参数类型 | 释义 |
 | ---- | ---- | ---- |
 | `task_name` | str | 任务名称，需要不同于其他已有的任务 |
-| `task_type` | str | 任务类型，目前仅支持以下三种任务：<br> - classification：文本分类 <br> - similarity：句子相似度 <br> - nli：推理任务 |
-| `engine_type` | str | 引擎类型<br> - qiankunding：乾坤鼎  |
+| `task_type` | str | 任务类型，目前仅支持以下三种任务：<br> - classification：文本分类 <br> - similarity：句子相似度 <br> - nli：推理任务 <br> - ie：信息抽取 |
+| `engine_type` | str | 引擎类型<br> - qiankunding：乾坤鼎 <br> - bagualu: 八卦炉  |
 
 * 输出参数
 
