@@ -137,7 +137,7 @@ INFO:     Uvicorn running on http://0.0.0.0:5201 (Press CTRL+C to quit)
 
 本示例中，以启动乾坤鼎为例，task_name设为tnews, task_type设为classification，engine_type设为qiankunding
 
-engine_type：只能设定为qiankunding, bagualu其中一种
+engine_type：只能设定为qiankunding、bagualu其中一种
 
 task_type：只能指定为classification、similarity、nli其中一种，其中qiankunding目前只支持classification；bagualu支持ie、classification
 

@@ -25,6 +25,7 @@ GTS Engine目前支持两种使用方式：
 
 以fewCLUE榜单上的csldcp和iflytek任务为例进行测试：
 
+乾坤鼎测试结果
 
 | 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参 | 任务 | 耗费时间(min) | total training step | final epoch | test acc |
 | ---- | --- | ------------------- | --------- | --------- | ---- | --- | ------------- | ------------------- | ----------- | -------- |
@@ -36,6 +37,9 @@ GTS Engine目前支持两种使用方式：
 | 3090 | 24GB | True | Adafactor | 32 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 217 | 1450 | 11 | 53.52 |
 | 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | csldcp  | 217 | 837 | 17 | 64.20 |
 | 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 231 | 1450 | 16 | 53.63 |
+
+八卦炉测试结果
+
 
 ## 软件环境要求
 
