@@ -25,7 +25,7 @@ GTS Engine目前支持两种使用方式：
 
 以fewCLUE榜单上的csldcp和iflytek任务为例进行测试：
 
-乾坤鼎测试结果
+乾坤鼎测试结果：
 
 | 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参 | 任务 | 耗费时间(min) | total training step | final epoch | test acc |
 | ---- | --- | ------------------- | --------- | --------- | ---- | --- | ------------- | ------------------- | ----------- | -------- |
@@ -39,7 +39,16 @@ GTS Engine目前支持两种使用方式：
 | 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 231 | 1450 | 16 | 53.63 |
 
 八卦炉测试结果
-
+| 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test acc |
+| ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
+| A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | csldcp  | 14.77           | 18            | 5                   | 3184        | 60.58    |
+| A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | iflytek | 14.77           | 32            | 5                   | 5494        | 51.12    |
+| V100 | 32GB | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 5.25            | 25            | 5                   | 3189        | 61.74    |
+| V100 | 32GB | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 5.25            | 38            | 5                   | 5489        | 51.63    |
+| 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 15.36           | 25            | 5                   | 3189        | 60.74    |
+| 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 15.36           | 43            | 5                   | 5494        | 51.36    |
+| 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 6.29            | 29            | 5                   | 3184        | 60.52    |
+| 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 6.29            | 50            | 5                   | 5484        | 51.1     |
 
 ## 软件环境要求
 
@@ -51,7 +60,7 @@ numpy==1.22.3
 psutil==5.8.0
 pydantic==1.10.2
 pynvml==11.0.0
-pytorch_lightning==1.6.2
+pytorch_lightning==1.7.6
 scikit_learn==1.1.3
 setuptools==58.0.4
 starlette==0.20.4
@@ -60,4 +69,14 @@ tqdm==4.62.3
 transformers==4.18.0
 uvicorn==0.19.0
 python-multipart==0.0.5
+sentence-transformers==2.2.2
+weaviate-client==3.7.0
+alibabacloud-darabonba-encode-util==0.0.1
+alibabacloud-darabonba-map==0.0.1
+alibabacloud-darabonba-string==0.0.4
+alibabacloud-ha3engine==1.3.1
+alibabacloud-tea==0.2.9
+alibabacloud-tea-util==0.3.7
+LAC==2.1.2
+textda==0.1.0.6
 ```
