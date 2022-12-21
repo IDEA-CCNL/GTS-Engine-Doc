@@ -17,7 +17,7 @@ GTS Engine的所有接口都是HTTP POST请求，同时也提供了一个python 
 | ---- | ---- | ---- |
 | `task_name` | str | 任务名称，需要不同于其他已有的任务 |
 | `engine_type` | str | 引擎类型<br> - qiankunding：乾坤鼎 <br> - bagualu: 八卦炉  |
-| `task_type` | str | 按照engine_type所支持的任务类型：<br>qiankunding支持三种任务类型 <br>- classification：文本分类 <br> - similarity：句子相似度 <br> - nli：推理任务 <br> bagualu支持的两种任务类型 <br>- classification：文本分类 <br> - ie：信息抽取 |
+| `task_type` | str | 根据engine_type选择其支持的任务类型：<br>qiankunding支持三种任务类型 <br>- classification：文本分类 <br> - similarity：句子相似度 <br> - nli：推理任务 <br> bagualu支持的两种任务类型 <br>- classification：文本分类 <br> - ie：信息抽取 |
 
 
 * 输出参数
