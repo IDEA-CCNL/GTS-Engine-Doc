@@ -27,7 +27,7 @@ pip install torch-1.11.0+cu113-cp38-cp38-linux_x86_64.whl
 ```
 需要新建名为```pretrained```，```tasks``` 的两个文件夹  
 建议按需下载模型（请见下表）。如果不下载，训练时会自动从```huggingface```下载，由于模型文件较大，可能因为网络原因导致下载失败，从而导致模型训练失败
-| engine_type | task_type      | Mode     | 建议下载模型                                                 |
+| engine_type | task_type      | Mode     | 模型                                                 |
 | ----------- | -------------- | -------- | ------------------------------------------------------------ |
 | qiankunding | classification、similarity、nli          | standard | [Erlangshen-UniMC-MegatronBERT-1.3B-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-UniMC-MegatronBERT-1.3B-Chinese) |
 | qiankunding | classification、similarity、nli          | advanced | [Erlangshen-TCBert-1.3B-Classification-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-TCBert-1.3B-Classification-Chinese) |
@@ -148,7 +148,7 @@ INFO:     Uvicorn running on http://0.0.0.0:5201 (Press CTRL+C to quit)
 
 engine_type：只能设定为qiankunding、bagualu其中一种
 
-task_type：只能指定为classification、similarity、nli其中一种，其中qiankunding目前只支持classification；bagualu支持ie、classification
+task_type：若engine_type选择qiankunding，则task_type只能选classification、similarity、nli一种；若engine_type选择bagualu，则task_type只能选ie、classification中一种
 
 
 注：task_name可以选填，为了方便后续任务管理，建议设置task_name参数，会生成与task_name同名的task_id，如果不设置task_name参数，会自动生成task_id，以下展示两种方式：
