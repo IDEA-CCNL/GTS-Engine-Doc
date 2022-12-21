@@ -31,7 +31,7 @@ pip install torch-1.11.0+cu113-cp38-cp38-linux_x86_64.whl
 | ----------- | -------------- | -------- | ------------------------------------------------------------ |
 | qiankunding | classification、similarity、nli          | standard | [Erlangshen-UniMC-MegatronBERT-1.3B-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-UniMC-MegatronBERT-1.3B-Chinese) |
 | qiankunding | classification、similarity、nli          | advanced | [Erlangshen-TCBert-1.3B-Classification-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-TCBert-1.3B-Classification-Chinese) |
-| bagualu     | classification | standard | macbert_base_binary(二分类任务)、ernie_base(多分类任务)      |
+| bagualu     | classification | standard | [Erlangshen-MacBERT-110M-BinaryClasssification-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-MacBERT-110M-BinaryClasssification-Chinese)(二分类任务)、[ernie-1.0-base-zh](https://huggingface.co/PaddlePaddle/ernie-1.0-base-zh)(多分类任务) [chinese-macbert-base](https://huggingface.co/hfl/chinese-macbert-base) (多分类任务)     |
 | Bagualu     | ie             | standard |                                                              |
 ```bash
 #将下载好的模型文件放在pretrained（如：Erlangshen-UniMC-MegatronBERT-1.3B-Chinese）
@@ -75,10 +75,10 @@ CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py --task_dir tasks --pretraine
 ├─GTS-Engine
 │   ├── gts_engine
     ├─pretrained
-│       ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese
-        ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese
-        ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese   
-        ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese       
+│       ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese（乾坤鼎）
+        ├──Erlangshen-MacBERT-110M-BinaryClasssification-Chinese（八卦炉）
+        ├── ernie-1.0-base-zh （八卦炉）  
+        ├── chinese-macbert-base（八卦炉）       
     ├─tasks
 │       ├── tnews
 
