@@ -1,7 +1,7 @@
 # 快速开始
 ## 服务启动
 
-下面通过一个简单的例子，来让您快速上手GTS Engine的使用。
+下面以启动乾坤鼎作为例，来让您快速上手GTS Engine的使用。
 首先提供以下三种启动服务的方法：
 - [pip启动](#pip启动)
 - [源码启动](#源码启动)
@@ -75,10 +75,7 @@ CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py --task_dir tasks --pretraine
 ├─GTS-Engine
 │   ├── gts_engine
     ├─pretrained
-│       ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese（乾坤鼎）
-        ├──Erlangshen-MacBERT-110M-BinaryClasssification-Chinese（八卦炉）
-        ├── ernie-1.0-base-zh （八卦炉）  
-        ├── chinese-macbert-base（八卦炉）       
+│       ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese（乾坤鼎）      
     ├─tasks
 │       ├── tnews
 
@@ -144,7 +141,7 @@ INFO:     Uvicorn running on http://0.0.0.0:5201 (Press CTRL+C to quit)
 
 点击`Try it out`按钮，设置task_name和task_type对应的参数，参数要求为字符串类型。
 
-本示例中，以启动乾坤鼎为例，task_name设为tnews, task_type设为classification，engine_type设为qiankunding
+本示例中，task_name设为tnews, task_type设为classification，engine_type设为qiankunding
 
 engine_type：只能设定为qiankunding、bagualu其中一种
 
