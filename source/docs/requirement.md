@@ -41,14 +41,14 @@ GTS Engine目前支持两种使用方式：
 八卦炉测试结果
 | 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test acc |
 | ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
-| A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | csldcp  | 14.77           | 18            | 5                   | 3184        | 60.58    |
-| A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | iflytek | 14.77           | 32            | 5                   | 5494        | 51.12    |
-| V100 | 32GB | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 5.25            | 25            | 5                   | 3189        | 61.74    |
-| V100 | 32GB | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 5.25            | 38            | 5                   | 5489        | 51.63    |
-| 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 15.36           | 25            | 5                   | 3189        | 60.74    |
-| 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 15.36           | 43            | 5                   | 5494        | 51.36    |
-| 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 6.29            | 29            | 5                   | 3184        | 60.52    |
-| 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 6.29            | 50            | 5                   | 5484        | 51.1     |
+| A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | csldcp  | 14.77           | 18            | 3184                   | 5        | 60.58    |
+| A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | iflytek | 14.77           | 32            | 5494                   | 5        | 51.12    |
+| V100 | 32GB | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 5.25            | 25            | 3189                   | 5        | 61.74    |
+| V100 | 32GB | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 5.25            | 38            | 5489                   | 5        | 51.63    |
+| 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 15.36           | 25            | 3189                   | 5        | 60.74    |
+| 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 15.36           | 43            | 5494                   | 5        | 51.36    |
+| 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 6.29            | 29            | 3184                   | 5        | 60.52    |
+| 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 6.29            | 50            | 5484                   | 5        | 51.1     |
 
 ## 软件环境要求
 
