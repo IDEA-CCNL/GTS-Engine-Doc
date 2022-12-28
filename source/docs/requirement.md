@@ -18,12 +18,12 @@ GTS Engine目前支持两种使用方式：
 - GPU
   - 训练Erlangshen-MegatronBert-1.3B的GPU是GeForce RTX ™ 3090 及以上，NVIDIA Ampere 架构。更好的V100,A100显卡可以大幅提升训练速度。
 - 显存
-  -  乾坤鼎需要24G及以上
+  -  乾坤鼎需要24G或以上
   -  八卦炉需要8G或以上
 
 ## 不同环境下的测试效果
 
-以fewCLUE榜单上的csldcp和iflytek任务为例进行测试：
+以fewCLUE榜单上的csldcp和iflytek任务为例进行测试(test acc项是test_public.json的准确率)：
 
 乾坤鼎测试结果：
 
