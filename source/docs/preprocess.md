@@ -106,19 +106,26 @@
 
 每行是一个样本，采用json格式，数据字段必须含有`"task"`、`"text"`、`"entity_list"/"spo_list"`、`"choice"`字段，其中：
 
-1. `"task"`字段对应的是信息抽取任务类型，目前支持`"实体识别"`及`"关系抽取"`两种信息抽取任务
-2. `"text"`字段对应的是输入文本
-3. `"entity_list"`字段对应实体列表信息，当`"task"`为`"实体识别"`必须含有该字段。每一个实体包含以下3个字段：
-    - `"entity_text"`对应实体文本(e.g. `"张三"`)
-    - `"entity_type"`对应实体类型(e.g. `"人名"`)
-    - `"entity_index"`对应实体位置(e.g. `[0, 2]`)
-4. `"spo_list"`字段对应关系列表信息，当`"task"`为`"关系抽取"`必须含有该字段。每个关系包含以下3个字段：
-    - `"predicate"`对应关系类型（谓语）
-    - `"subject"`对应关系中的头实体（主语），格式与`"entity_list"`中的实体相同
-    - `"object"`对应关系中的尾实体（宾语），格式与`"entity_list"`中的实体相同
-5. `"choice"`对应抽取选项
-    - 当`"task"`为`"实体识别"`时，`"choice"`字段为实体类型`"entity_type"`字段的全集
-    - 当`"task"`为`"关系抽取"`时，`"choice"`字段为关系三元组类型`["entity_type", "predicate", "entity_type"]`的全集
+| 字段                            | 类型                               | 说明                                                                                                                                            |
+| ----------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| task                          | String                           | 信息抽取任务类型，目前支持"实体识别"及"关系抽取"两种信息抽取任务                                                                                                            |
+| text                          | String                           | 输入文本                                                                                                                                          |
+| entity_list                   | List[Object]                     | 实体列表信息，当"task"为"实体识别"必须含有该字段                                                                                                                  |
+| entity_list.entity_text       | String                           | 实体文本(e.g. "张三")                                                                                                                               |
+| entity_list.entity_type       | String                           | 实体类型(e.g. "人名")                                                                                                                               |
+| entity_list.entity_index      | [Integer, Integer]               | 实体位置(e.g. [0, 2])                                                                                                                             |
+| spo_list                      | List[Object]                     | 关系列表信息，当"task"为"关系抽取"必须含有该字段                                                                                                                  |
+| spo_list.predicate            | String                           | 关系类型（谓语）                                                                                                                                      |
+| spo_list.subject              | Object                           | 关系中的头实体（主语）                                                                                                                                   |
+| spo_list.subject.entity_text  | String                           | 头实体文本                                                                                                                                         |
+| spo_list.subject.entity_type  | String                           | 头实体类型                                                                                                                                         |
+| spo_list.subject.entity_index | [Integer, Integer]               | 头实体位置                                                                                                                                         |
+| spo_list.object               | Object                           | 关系中的尾实体（宾语）                                                                                                                                   |
+| spo_list.object.entity_text   | String                           | 尾实体文本                                                                                                                                         |
+| spo_list.object.entity_type   | String                           | 尾实体类型                                                                                                                                         |
+| spo_list.object.entity_index  | [Integer, Integer]               | 尾实体位置                                                                                                                                         |
+| choice                        | List[String] / List[List[String] | 1. 当"task"为"实体识别"时，"choice"字段为实体类型"entity_type"字段的全集<br/>2. 当"task"为"关系抽取"时，"choice"字段为关系三元组类型["entity_type", "predicate", "entity_type"]的全集 |
+
 
 ```python
 # 实体识别示例
