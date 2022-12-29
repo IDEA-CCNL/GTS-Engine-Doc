@@ -38,7 +38,7 @@ GTS Engine目前支持两种使用方式：
 | 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | csldcp  | 217 | 837 | 17 | 64.20 |
 | 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 231 | 1450 | 16 | 53.63 |
 
-八卦炉测试结果
+八卦炉文本分类测试结果
 | 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test acc |
 | ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
 | A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | csldcp  | 14.77           | 18            | 3184                   | 5        | 60.58    |
@@ -49,6 +49,19 @@ GTS Engine目前支持两种使用方式：
 | 3090 | 24G  | FALSE               | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 15.36           | 43            | 5494                   | 5        | 51.36    |
 | 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | csldcp  | 6.29            | 29            | 3184                   | 5        | 60.52    |
 | 3090 | 24G  | TRUE                | AdamW     | 16        | batch_size=8, max_len=512 | iflytek | 6.29            | 50            | 5484                   | 5        | 51.1     |
+
+八卦炉信息抽取测试结果
+
+> 备注：zh_weibo/MSRA/OntoNote4/Resume为NER任务，其中MSRA在原始数据下进行测试；SanWen/FinRE作为实体关系联合抽取任务进行测试，非单一关系分类任务
+
+| 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test f1 |
+| ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
+| A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | zh_weibo | 6.32            | 5            | 960                   | 12        | 0.6756     |
+| A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | MSRA | 21.54            | 39            | 15480                   | 6        | 0.9337     |
+| A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | OntoNote4 | 13.95            | 19            | 6380                   | 7        | 0.8653     |
+| A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | Resume | 7.26            | 17            | 5000                   | 21        | 0.9614     |
+| A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | SanWen | 9.25            | 23            | 9680                   | 9        | 0.2704     |
+| A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | FinRE | 5.60           | 18            | 3060                   | 8        | 0.4692     |
 
 ## 软件环境要求
 
