@@ -75,7 +75,7 @@ CUDA_VISIBLE_DEVICES=0 python gts_engine_service.py --task_dir tasks --pretraine
 ├─GTS-Engine
 │   ├── gts_engine
     ├─pretrained
-│       ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese（乾坤鼎）      
+│       ├── Erlangshen-UniMC-MegatronBERT-1.3B-Chinese  
     ├─tasks
 │       ├── tnews
 
