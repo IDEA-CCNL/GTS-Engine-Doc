@@ -39,6 +39,7 @@ GTS Engine目前支持两种使用方式：
 | 3090 | 24GB | True | Adafactor | 16 | batch_size=4, max_len=768, accumulate_batch = 8, val_check_internal = 0.25 | iflytek | 231 | 1450 | 16 | 53.63 |
 
 八卦炉文本分类测试结果
+
 | 显卡 | 显存 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test acc |
 | ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
 | A100 | 40GB | FALSE               | AdamW     | 32        | batch_size=8, max_len=512 | csldcp  | 14.77           | 18            | 3184                   | 5        | 60.58    |
