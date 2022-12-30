@@ -7,7 +7,7 @@
 - 验证集
 - 测试集（可选）
 - 无标签数据集（可选）
-- 标签集
+- 标签集（信息抽取无需标签集）
 
 
 ## 数据处理
@@ -99,3 +99,98 @@
 # 语义匹配任务
 {"id": 8, "sentence1": "你会玩什么游戏", "sentence2": "还有什么游戏"}
 ```
+
+### 信息抽取任务
+
+- **训练数据**
+
+每行是一个样本，采用json格式，数据字段必须含有`"task"`、`"text"`、`"entity_list"/"spo_list"`、`"choice"`字段，其中：
+
+| 字段                            | 类型                               | 说明                                                                                                                                            |
+| ----------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| task                          | String                           | 信息抽取任务类型，目前支持"实体识别"及"关系抽取"两种信息抽取任务                                                                                                            |
+| text                          | String                           | 输入文本                                                                                                                                          |
+| entity_list                   | List[Object]                     | 实体列表信息，当"task"为"实体识别"必须含有该字段                                                                                                                  |
+| entity_list.entity_text       | String                           | 实体文本(e.g. "张三")                                                                                                                               |
+| entity_list.entity_type       | String                           | 实体类型(e.g. "人名")                                                                                                                               |
+| entity_list.entity_index      | [Integer, Integer]               | 实体位置(e.g. [0, 2])                                                                                                                             |
+| spo_list                      | List[Object]                     | 关系列表信息，当"task"为"关系抽取"必须含有该字段                                                                                                                  |
+| spo_list.predicate            | String                           | 关系类型（谓语）                                                                                                                                      |
+| spo_list.subject              | Object                           | 关系中的头实体（主语）                                                                                                                                   |
+| spo_list.subject.entity_text  | String                           | 头实体文本                                                                                                                                         |
+| spo_list.subject.entity_type  | String                           | 头实体类型                                                                                                                                         |
+| spo_list.subject.entity_index | [Integer, Integer]               | 头实体位置                                                                                                                                         |
+| spo_list.object               | Object                           | 关系中的尾实体（宾语）                                                                                                                                   |
+| spo_list.object.entity_text   | String                           | 尾实体文本                                                                                                                                         |
+| spo_list.object.entity_type   | String                           | 尾实体类型                                                                                                                                         |
+| spo_list.object.entity_index  | [Integer, Integer]               | 尾实体位置                                                                                                                                         |
+| choice                        | List[String] / List[List[String] | 1. 当"task"为"实体识别"时，"choice"字段为实体类型"entity_type"字段的全集<br/>2. 当"task"为"关系抽取"时，"choice"字段为关系三元组类型["entity_type", "predicate", "entity_type"]的全集 |
+
+
+```python
+# 实体识别示例
+{
+    "task": "实体识别",
+    "text": "我们是受到郑振铎先生、阿英先生著作的启示，从个人条件出发，瞄准现代出版史研究的空白，重点集藏解放区、国民党毁禁出版物。",
+    "entity_list": [
+        {
+            "entity_text": "郑振铎",
+            "entity_type": "人名",
+            "entity_index": [5, 8]
+        }, {
+            "entity_text": "阿英",
+            "entity_type": "人名",
+            "entity_index": [11, 13]
+        }, {
+            "entity_text": "国民党",
+            "entity_type": "组织机构",
+            "entity_index": [50, 53]
+        }
+    ],
+    "choice": ["组织机构", "人名", "地点"]
+}
+# 关系抽取示例
+{
+    "task": "关系抽取",
+    "text": "在导师阵容方面，英达有望联手《中国喜剧王》选拔新一代笑星",
+    "spo_list": [
+        {
+            "predicate": "嘉宾",
+            "subject": {
+                "entity_text": "中国喜剧王",
+                "entity_type": "电视综艺",
+                "entity_index": [15, 20]
+            },
+            "object": {
+                "entity_text": "英达",
+                "entity_type": "人物",
+                "entity_index": [8, 10]
+            }
+        }
+    ],
+    "choice": [
+        ["电视综艺", "嘉宾", "人物"],
+        ["影视作品", "主演", "人物"],
+        ["影视作品", "编剧", "人物"],
+        ["景点", "所在城市", "城市"],
+        ["娱乐人物", "获奖", "奖项"],
+        ["企业", "董事长", "人物"],
+        ["图书作品", "作者", "人物"],
+        ["机构", "成立日期", "时间"],
+        ["国家", "首都", "城市"]
+    ]
+}
+```
+
+- **验证数据**
+
+验证数据与训练数据格式一致。
+
+
+- **测试数据**
+
+测试数据与训练数据格式一致。
+
+- **无标签数据**
+
+无标签数据除无需提供`"entity_list"`和`"spo_list"`外，其他字段与训练数据格式一致。
