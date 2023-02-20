@@ -70,9 +70,10 @@ GTS Engine目前支持两种使用方式：
 
 > 备注：以下为在lcsts训练集中随机挑选10000条作为训练样本的结果，验证集和测试集均为原数据test.jsonl
 
-| 显卡 | 显存  ｜ 模式      | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test rougeL f1 |
-| ---- | ---- ｜--------- | ------------------- | --------- | --------- | --------------------------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
-| A100 | 40GB | advanced | FALSE               | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 43.52           | 69        | 7499                   | 6        | 33.04    |
+
+| 显卡 | 显存 | 模式 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test rougeL f1 |
+| ---- | ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
+| A100 | 40G  |  advanced | FALSE               | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 43.52           | 69        | 7499                   | 6        | 33.04    |
 | A100 | 40GB | standard | FALSE               | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 26.55           | 42        | 7499                   | 6        | 32.28    |
 | A100 | 40GB | standard | TRUE                | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 20.56           | 44        | 7499                   | 6        | 32.28    |
 | 3090 | 24G  | advanced | FALSE               | AdamW     | 16        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 43.52           | 65        | 7499                   | 6        | 32.96    |
