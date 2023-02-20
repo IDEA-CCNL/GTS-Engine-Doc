@@ -64,6 +64,23 @@ GTS Engine目前支持两种使用方式：
 | A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | SanWen | 9.25            | 23            | 9680                   | 9        | 0.2704     |
 | A100 | 40G  | TRUE                | AdamW     | 16        | batch_size=16, max_len=512 | FinRE | 5.60           | 18            | 3060                   | 8        | 0.4692     |
 
+
+
+八卦炉摘要生成试结果
+
+> 备注：以下为在lcsts训练集中随机挑选10000条作为训练样本的结果，验证集和测试集均为原数据test.jsonl
+
+
+| 显卡 | 显存 | 模式 | gradient checkpoint | optimizer | precision | 超参                      | 任务    | 真实显存占用(G) | 耗费时间(min) | total training step | final epoch | test rougeL f1 |
+| ---- | ---- | ---- | ------------------- | --------- | --------- | ------------------------- | ------- | --------------- | ------------- | ------------------- | ----------- | -------- |
+| A100 | 40G  |  advanced | FALSE               | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 43.52           | 69        | 7499                   | 6        | 33.04    |
+| A100 | 40GB | standard | FALSE               | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 26.55           | 42        | 7499                   | 6        | 32.28    |
+| A100 | 40GB | standard | TRUE                | AdamW     | 32        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 20.56           | 44        | 7499                   | 6        | 32.28    |
+| 3090 | 24G  | advanced | FALSE               | AdamW     | 16        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 43.52           | 65        | 7499                   | 6        | 32.96    |
+| 3090 | 24G  | standard | FALSE               | AdamW     | 16        | batch_size=8, max_enc_len=128, max_dec_len=64 | lcsts  | 23.68           | 42        | 7499                   | 6        | 32.27    |
+
+
+
 ## 软件环境要求
 
 建议您使用我们打包好的Docker镜像，如果您需要直接使用源码，请使用`python>=3.7+`并且需要满足下列的软件安装依赖：
