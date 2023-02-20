@@ -34,7 +34,8 @@ pip install torch-1.11.0+cu113-cp38-cp38-linux_x86_64.whl
 | qiankunding | classification、similarity、nli          | advanced | [Erlangshen-TCBert-1.3B-Classification-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-TCBert-1.3B-Classification-Chinese) |
 | bagualu     | classification | standard | [Erlangshen-MacBERT-110M-BinaryClasssification-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-MacBERT-110M-BinaryClassification-Chinese)(二分类任务)、[ernie-1.0-base-zh](https://huggingface.co/xiaoqin/ernie-1.0-base-zh)(多分类任务) [chinese-macbert-base](https://huggingface.co/hfl/chinese-macbert-base) (多分类任务)     |
 | Bagualu     | ie             | standard | [Erlangshen-BERT-120M-IE-Chinese](https://huggingface.co/IDEA-CCNL/Erlangshen-BERT-120M-IE-Chinese) |
-
+| Bagualu     | summary        | standard | [Randeng-Pegasus-238M-Summary-Chinese](https://huggingface.co/IDEA-CCNL/Randeng-Pegasus-238M-Summary-Chinese) |
+| Bagualu     | summary        | advanced | [Randeng-Pegasus-523M-Summary-Chinese](https://huggingface.co/IDEA-CCNL/Randeng-Pegasus-523M-Summary-Chinese) |
 ```bash
 #将下载好的模型文件放在pretrained（如：Erlangshen-UniMC-MegatronBERT-1.3B-Chinese）
 mkdir pretrained  
@@ -147,7 +148,7 @@ INFO:     Uvicorn running on http://0.0.0.0:5201 (Press CTRL+C to quit)
 
 engine_type：只能设定为qiankunding、bagualu其中一种
 
-task_type：若engine_type选择qiankunding，则task_type只能选classification、similarity、nli一种；若engine_type选择bagualu，则task_type只能选ie、classification中一种
+task_type：若engine_type选择qiankunding，则task_type只能选classification、similarity、nli一种；若engine_type选择bagualu，则task_type只能选ie、classification、summary中一种
 
 
 注：task_name可以选填，为了方便后续任务管理，建议设置task_name参数，会生成与task_name同名的task_id，如果不设置task_name参数，会自动生成task_id，以下展示两种方式：
